@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="4e32179e-57de-4fc1-b370-ea104417849e">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="3"/>
+	<parameter name="Transaksi" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT sp.id_transaksi, sp.NIS, s.nama_siswa, k.namakelas , sp.tanggal, sp.totalbayar, tr.bulan, tr.harga
+FROM spp AS sp, siswa AS s, trxdetail AS tr, kelas AS k
+WHERE sp.id_transaksi = tr.id_transaksi AND s.id_kelas = k.id_kelas AND sp.NIS =s.NIS AND sp.id_transaksi = $P{Transaksi}]]>
+	</queryString>
+	<field name="id_transaksi" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NIS" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nama_siswa" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="namakelas" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="tanggal" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="totalbayar" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="bulan" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="harga" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="90" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="24" width="555" height="22" uuid="7c8311c2-7276-4d8f-a1b1-75c311ffcb10"/>
+				<textElement textAlignment="Center">
+					<font size="15" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SMP Muhamddiyah 5]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="47" width="555" height="20" uuid="bdbcb528-b1ce-4804-a864-e1e667e88bce"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Jalan Soekarno Hatta Baruna Jaya No 20, Panjang, BandarLampung]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="70" width="555" height="1" uuid="8026eff0-bd65-4d5c-9f89-320cced96be6"/>
+				<graphicElement>
+					<pen lineWidth="2.0" lineStyle="Double"/>
+				</graphicElement>
+			</line>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="181" splitType="Stretch">
+			<staticText>
+				<reportElement x="74" y="155" width="73" height="20" uuid="96d18200-3ddb-40d5-9d68-71dfe0d8bc1c"/>
+				<text><![CDATA[Kode Transaksi]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="74" y="74" width="43" height="20" uuid="5ae6cf14-dc86-4a04-9cb4-c69edb451e54"/>
+				<text><![CDATA[NIS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="74" y="22" width="276" height="20" uuid="17c22cab-aaaa-4acc-a100-9cb4966b3d92"/>
+				<text><![CDATA[Diberitahukan kepada wali kelas siswa dengan nama siswa :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="74" y="52" width="43" height="20" uuid="b121623b-c3b3-4611-9cf2-5ba452298df0"/>
+				<text><![CDATA[Nama]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="74" y="95" width="43" height="20" uuid="de733d59-7996-4750-8c2b-3a14d2c38f61"/>
+				<text><![CDATA[Kelas]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="74" y="129" width="241" height="20" uuid="3f5ce6ed-faf7-4671-8ea8-47cbe4605d09"/>
+				<text><![CDATA[Dengan rincian pembayaran sebagai berikut :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="268" y="155" width="70" height="20" uuid="2dfdf5e6-092e-4569-9753-519cf3894ecb"/>
+				<text><![CDATA[Tanggal Bayar]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="127" y="73" width="141" height="20" uuid="0cd48692-4d75-4dd1-855c-6550b25bf32c"/>
+				<textFieldExpression><![CDATA[$F{NIS}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="127" y="51" width="141" height="20" uuid="85738ec8-27ae-45de-b974-5bb4212c9692"/>
+				<textFieldExpression><![CDATA[$F{nama_siswa}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="127" y="96" width="141" height="20" uuid="648ae386-0dbf-42a3-a27d-0ea261bc0247"/>
+				<textFieldExpression><![CDATA[$F{namakelas}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd MMMMM yyyy">
+				<reportElement x="341" y="155" width="100" height="20" uuid="125e0ca5-747b-4368-9205-e597b2f4c62b"/>
+				<textFieldExpression><![CDATA[$F{tanggal}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="151" y="155" width="100" height="20" uuid="2d8ca78d-2832-4a33-a026-471d30baaf21"/>
+				<textFieldExpression><![CDATA[$F{id_transaksi}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="21" splitType="Stretch">
+			<rectangle>
+				<reportElement x="74" y="1" width="89" height="20" uuid="81171547-4e77-4dd9-8e89-13565191922d"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="74" y="1" width="89" height="20" uuid="5cf5cd81-bec4-4870-bf25-872e06721b5c"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Bulan]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="163" y="1" width="100" height="20" uuid="c4b7723a-afd5-4bca-af20-caae2078b3a4"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="163" y="1" width="100" height="20" uuid="b5e6a69d-0d9a-4335-8d0e-5634fe2d97d3"/>
+				<textElement textAlignment="Center">
+					<font isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[Total]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="21" splitType="Stretch">
+			<textField>
+				<reportElement x="79" y="0" width="84" height="20" uuid="08cd7413-9bbb-4c7c-8cfd-deb444582ee1"/>
+				<textFieldExpression><![CDATA[$F{bulan}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="170" y="1" width="93" height="19" uuid="7880d16b-17a7-45ff-bc6d-89611dec4ae8"/>
+				<textFieldExpression><![CDATA[$F{harga}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="20" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="13" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="195" splitType="Stretch">
+			<staticText>
+				<reportElement x="74" y="1" width="84" height="20" uuid="9f39288a-e352-4b3a-945e-7b3c35b7f166"/>
+				<text><![CDATA[Total Keseluruhan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="74" y="38" width="407" height="20" uuid="85767fb8-84b6-4275-9731-a6001f2350d1"/>
+				<text><![CDATA[Terima kasih telah melakukan pembayaran, surat ini ditujukan kepada wali siswa sebagai bukti pembaa]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="74" y="58" width="100" height="20" uuid="a0607be7-ceac-4ef3-93be-64c34478be0b"/>
+				<text><![CDATA[bukti pembayaran]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="383" y="88" width="84" height="20" uuid="253d3db3-3190-434e-bce1-97dda1818d4f"/>
+				<text><![CDATA[Bandarlampung,]]></text>
+			</staticText>
+			<textField pattern="dd MMMMM yyyy">
+				<reportElement x="462" y="88" width="93" height="20" uuid="7359ae7a-846f-481f-a1b1-b7e4989f124a"/>
+				<textFieldExpression><![CDATA[new Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="383" y="108" width="84" height="20" uuid="7190fb67-fd76-4830-90f1-24fce0408681"/>
+				<text><![CDATA[Mengetahui,]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="383" y="157" width="84" height="20" uuid="5bbcd202-3bea-4f1d-b43b-343bd9fb22d2"/>
+				<textElement>
+					<font isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Syakdiah, S.Pd]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="383" y="173" width="84" height="20" uuid="b27bd468-2857-4a42-bac7-b9a05584e3d7"/>
+				<textElement>
+					<font isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Kepala Sekolah]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="170" y="1" width="93" height="20" uuid="0ffff184-f67d-488b-9427-48146b6121d3"/>
+				<textFieldExpression><![CDATA[$F{totalbayar}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="74" y="0" width="189" height="1" uuid="695d18fc-683e-4136-a71e-ec7fff553fc3"/>
+			</line>
+		</band>
+	</summary>
+</jasperReport>

@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="9685429b-9be1-40b3-a872-da9674f95e8e">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="tglmulai" class="java.lang.String"/>
+	<parameter name="tglsampai" class="java.lang.String"/>
+	<parameter name="kelas" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT s.NIS, s.nama_siswa, k.namakelas, s.Notelephone FROM siswa AS s, kelas AS k 
+WHERE s.id_kelas = k.id_kelas AND k.namakelas = $P{kelas} AND s.NIS NOT IN 
+(
+SELECT s.NIS
+FROM spp AS sp, siswa AS s, trxdetail AS tr, kelas AS k
+WHERE sp.id_transaksi = tr.id_transaksi AND s.id_kelas = k.id_kelas AND sp.NIS =s.NIS 
+AND k.namakelas = $P{kelas} AND sp.tanggal BETWEEN $P{tglmulai} AND $P{tglsampai}
+)]]>
+	</queryString>
+	<field name="NIS" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nama_siswa" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="namakelas" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Notelephone" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<variable name="NIS_1" class="java.lang.Integer" calculation="Count">
+		<variableExpression><![CDATA[$F{NIS}]]></variableExpression>
+	</variable>
+	<variable name="namakelas_1" class="java.lang.Integer" calculation="Count">
+		<variableExpression><![CDATA[$F{namakelas}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="182" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="555" height="31" uuid="163e0231-3851-487f-b70e-1729dccfa7db"/>
+				<textElement textAlignment="Center">
+					<font size="24"/>
+				</textElement>
+				<text><![CDATA[SMP Muhammadiyah 5]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="35" width="555" height="20" uuid="4fb34e48-b3af-4e60-8427-b87f99ae3ed2"/>
+				<textElement textAlignment="Center">
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Jalan Soekarno Hatta Baruna Jaya No 20, Panjang, BandarLampung]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="63" width="555" height="1" uuid="c502d242-6d62-4970-82d5-2571d7d6435d"/>
+				<graphicElement>
+					<pen lineWidth="1.75" lineStyle="Double"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="0" y="77" width="555" height="31" uuid="873f46ab-c763-4896-be30-4421debd5315"/>
+				<textElement textAlignment="Center">
+					<font size="16"/>
+				</textElement>
+				<text><![CDATA[Data siswa yang belum membayar SPP ]]></text>
+			</staticText>
+			<textField pattern="dd MMMMM yyyy">
+				<reportElement x="134" y="119" width="100" height="20" uuid="4af226b7-ec92-49d9-a8a1-2df08871715e"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{tglmulai}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd MMMMM yyyy">
+				<reportElement x="135" y="139" width="100" height="20" uuid="d7423b72-5a6f-4af1-bc79-0dafb3926356"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{tglsampai}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="25" y="159" width="58" height="20" uuid="71a85135-44cb-4458-b23d-e48c91d3593a"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Kelas]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="134" y="159" width="100" height="20" uuid="dbd26038-f815-447f-ba54-0e85e82fa7e1"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{kelas}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="25" y="119" width="88" height="20" uuid="47df5485-49a4-46de-937b-fa8645c2d13c"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Mulai Tanggal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="25" y="139" width="105" height="20" uuid="e3c8e0ba-a905-43c2-a0e1-d7100f31cac1"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Sampai Tanggal]]></text>
+			</staticText>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="20" splitType="Stretch">
+			<rectangle>
+				<reportElement x="230" y="0" width="110" height="20" uuid="7a239233-495f-4c6c-a7cf-a0b9e026a230"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="336" y="0" width="118" height="20" uuid="e3d5ec6c-1ed8-4fa7-abef-a8df31b39a82"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="230" y="0" width="106" height="20" uuid="3e28f637-c618-4951-8662-38ab82979d0e"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Nama Siswa]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="336" y="0" width="118" height="20" uuid="78d813d7-3aad-4cc0-af02-a04a7f34cbb3"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[No Telepon]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="120" y="0" width="110" height="20" uuid="a14b4b61-3559-4f0b-9d52-c44fd0827a28"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="124" y="0" width="106" height="20" uuid="a5b9eb7b-a7d9-4759-a7d8-8ccee9a7e37f"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[NIS]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="24" splitType="Stretch">
+			<textField>
+				<reportElement x="130" y="3" width="100" height="20" uuid="c03b2355-e2ea-4d43-b040-84265fcbdeec"/>
+				<textFieldExpression><![CDATA[$F{NIS}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="235" y="3" width="100" height="20" uuid="85982115-93e9-4d6c-bfbc-3db15c629103"/>
+				<textFieldExpression><![CDATA[$F{nama_siswa}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="343" y="3" width="100" height="20" uuid="d046d3d0-f87a-4816-ac23-7d3601230dad"/>
+				<textFieldExpression><![CDATA[$F{Notelephone}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="215" splitType="Stretch">
+			<staticText>
+				<reportElement x="374" y="69" width="64" height="20" uuid="2e156a03-ac65-4569-83fb-91ffd84ae73e"/>
+				<text><![CDATA[Mengetahui ,]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="374" y="137" width="80" height="20" uuid="56117ee0-8656-483c-8501-f838f31d5521"/>
+				<textElement>
+					<font isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Syakdiah, S.Pd]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="374" y="147" width="88" height="20" uuid="cb850460-f4f7-4268-9fc1-89ec0938f74c"/>
+				<text><![CDATA[Kepala Sekolah]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="374" y="49" width="80" height="20" uuid="5db8d761-ad8e-47eb-9cff-1f457d9e69c0"/>
+				<text><![CDATA[Bandarlampung,]]></text>
+			</staticText>
+			<textField pattern="dd MMMMM yyyy">
+				<reportElement x="454" y="49" width="100" height="20" uuid="4113108c-ae88-44c9-a81f-db625640fcf4"/>
+				<textFieldExpression><![CDATA[new Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="34" splitType="Stretch">
+			<textField>
+				<reportElement x="431" y="0" width="80" height="20" uuid="867a1986-f647-4936-8113-366421d26696"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="515" y="0" width="40" height="20" uuid="64175d70-4e6b-401b-9858-967e123bb860"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="38" splitType="Stretch">
+			<line>
+				<reportElement x="120" y="0" width="334" height="1" uuid="ffacbb2c-2dbb-4360-8d10-ac34ca6b9507"/>
+			</line>
+			<staticText>
+				<reportElement x="113" y="1" width="60" height="20" uuid="a19914b7-28b6-45cc-bf8d-438ac803691b"/>
+				<text><![CDATA[Total Siswa]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="173" y="1" width="100" height="20" uuid="9957fc0c-5e2f-4d70-95eb-c7f32c90aa55"/>
+				<textFieldExpression><![CDATA[$V{namakelas_1}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>
